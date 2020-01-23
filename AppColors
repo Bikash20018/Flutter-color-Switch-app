@@ -1,0 +1,66 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+void main() =>runApp(Hello());
+
+class Hello extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    
+     return MaterialApp(
+       debugShowCheckedModeBanner: false,
+      title: "Colors App", 
+      theme: ThemeData(
+        primarySwatch: Colors.amber,
+      ),
+      home: MyHome(),
+    );
+  }
+}
+
+class MyHome extends StatefulWidget {
+  @override
+  _MyHomeState createState() => _MyHomeState();
+}
+
+class _MyHomeState extends State<MyHome> {
+  List<Color> randomcolors = [
+   Color(0xfff44336),
+   Color(0xfff44333),
+   Color(0xf0044213),
+   Color(0xff044336),
+   Color(0xfff59336),
+   Color(0xfff44336),
+  ];
+int index;
+Color colorrightnow;
+
+void changecolor() {
+setState(() {
+  index =Random().nextInt(randomcolors.length);
+  colorrightnow = randomcolors[index];
+});
+
+}
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+    
+      decoration: BoxDecoration(
+        color: colorrightnow,
+      ),
+      child: FlatButton(
+        onPressed: () {
+            changecolor();
+        },
+        child: Text(
+          "Change", style: TextStyle(color: Colors.green, fontSize: 20.0, fontWeight:FontWeight.bold,
+          fontStyle: FontStyle.italic),
+        ),
+      ),
+      
+    );
+  }
+}
